@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <h1><% if user[username]%>
+          <%= user[username]%>
+          <input type="button" name="logout!" value="Logout">
+        <% else %>
+          <input type="button" name="login!" value="Login">
+        <% end %>
+    </h1>
     <%= yield %>
   </body>
 </html>

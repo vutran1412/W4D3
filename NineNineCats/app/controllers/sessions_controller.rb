@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :require_logout, only: [:new, :create]
+
   def new
     render :new
   end
@@ -14,13 +16,13 @@ class SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      redirect cat_url(@cat)
+      redirect user_url(@user)
     else
       render :new
     end
   end
 
   def destroy
-
+    logout!
   end
 end
