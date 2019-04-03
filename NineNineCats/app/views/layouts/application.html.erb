@@ -9,11 +9,16 @@
   </head>
 
   <body>
-    <h1><% if user[username]%>
-          <%= user[username]%>
-          <input type="button" name="logout!" value="Logout">
+    <h1><% if current_user%>
+          <%= current_user%>
+          <form action="<%= session_url %>" method="">
+            <input type="hidden" name="_method" value="delete">
+              <input type="button" name="logout!" value="Logout">
+          </form>
         <% else %>
-          <input type="button" name="login!" value="Login">
+          <form action="<%= session_url %>" method="POST">
+            <input type="button" name="login!" value="Login">
+          </form>
         <% end %>
     </h1>
     <%= yield %>

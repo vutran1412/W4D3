@@ -1,6 +1,6 @@
 <h1>Log in!</h1>
 
-<form action="/session" method="POST">
+<form action="<%= session_url %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <label for="user_username">Username</label>
@@ -9,7 +9,7 @@
   <br />
 
   <label for="user_password">Password</label>
-  <input type="text" name="user[password]" id="user_password">
+  <input type="password" name="user[password]" id="user_password">
 
   <br />
 

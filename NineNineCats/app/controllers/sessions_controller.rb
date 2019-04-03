@@ -12,8 +12,6 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
 
-    @user.reset_session_token!
-
     if @user
       login!(@user)
       redirect user_url(@user)
