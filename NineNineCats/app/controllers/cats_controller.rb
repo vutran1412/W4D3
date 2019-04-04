@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+
+  before_action :require_logout, only: [:edit, :update]
+
   def index
     @cats = Cat.all
     render :index
@@ -25,8 +28,12 @@ class CatsController < ApplicationController
   end
 
   def edit
-    @cat = Cat.find(params[:id])
-    render :edit
+    #@cat = Cat.find(params[:id])
+    owners_cats = current_user.cats #an array of cat objects
+    if owners_cats.include?(Cat.new(cat_params)
+      @cat = owners_cats.first #definitely not right
+      render :edit
+    end
   end
 
   def update
@@ -42,6 +49,6 @@ class CatsController < ApplicationController
   private
 
   def cat_params
-    params.require(:cat).permit(:age, :birth_date, :color, :description, :name, :sex)
+    params.require(:cat).permit(:age, :birth_date, :color, :description, :name, :sex, :user_id)
   end
 end
