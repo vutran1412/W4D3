@@ -3,22 +3,23 @@
   <head>
     <title>NinetyNineCats</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <h1><% if current_user%>
-          <%= current_user%>
-          <form action="<%= session_url %>" method="">
-            <input type="hidden" name="_method" value="delete">
-              <input type="button" name="logout!" value="Logout">
+    <h1>
+        <% if logged_in? %>
+          <%= current_user %>
+          <form action="<%= session_url %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Logout">
           </form>
         <% else %>
-          <form action="<%= session_url %>" method="POST">
+          <!-- <form action="<%= session_url %>" method="POST">
             <input type="button" name="login!" value="Login">
-          </form>
+          </form> -->
+          <a href="/users/new" method="GET"><input type="button" value="Login"></a>
         <% end %>
     </h1>
     <%= yield %>

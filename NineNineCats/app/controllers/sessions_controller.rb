@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @user
       login!(@user)
-      redirect user_url(@user)
+      redirect_to cats_url
     else
       render :new
     end
@@ -22,5 +22,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout!
+    redirect_to new_session_url
   end
 end

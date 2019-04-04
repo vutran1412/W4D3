@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
+
     user = User.new(user_params)
     user.save!
-    redirect_to :session
+    login!(user)
+    redirect_to :cats
   end
 
   private
