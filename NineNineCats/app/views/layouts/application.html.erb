@@ -10,16 +10,15 @@
   <body>
     <h1>
         <% if logged_in? %>
-          <%= current_user %>
+          Welcome back, <%= current_user.username %>!
           <form action="<%= session_url %>" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <input type="hidden" name="_method" value="DELETE">
               <input type="submit" value="Logout">
           </form>
         <% else %>
-          <!-- <form action="<%= session_url %>" method="POST">
-            <input type="button" name="login!" value="Login">
-          </form> -->
-          <a href="/users/new" method="GET"><input type="button" value="Login"></a>
+          <a href="<%= new_session_url %>" method="GET"><input type="button" value="Login"></a>
+          <a href="<%= new_user_url %>" method="GET"><input type="button" value="Sign up"></a>
         <% end %>
     </h1>
     <%= yield %>
